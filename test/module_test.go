@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestS3Creation(t *testing.T) {
+func TestGitHubOIDCProviderCreation(t *testing.T) {
 	t.Parallel()
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
