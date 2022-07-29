@@ -18,7 +18,7 @@ func TestGitHubOIDCProviderCreation(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	exampleName := terraform.Output(t, terraformOptions, "example_name")
+	github_actions_provider := terraform.Output(t, terraformOptions, "github_actions_provider")
 
-	assert.Regexp(t, regexp.MustCompile(`^example-name*`), exampleName)
+	assert.Regexp(t, regexp.MustCompile(`^example-name*`), github_actions_provider)
 }

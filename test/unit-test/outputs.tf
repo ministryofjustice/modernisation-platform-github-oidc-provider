@@ -1,3 +1,3 @@
-output "example" {
-  value = module.example.name
+output "github_actions_provider" {
+  value = module.module_test.github_actions_provider
 }
