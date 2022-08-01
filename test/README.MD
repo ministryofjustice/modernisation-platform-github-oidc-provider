@@ -5,7 +5,7 @@
 On first set up of a new repository, run:
 
 ```
-go mod init github.com/ministryofjustice/<repo-name>
+go mod init github.com/ministryofjustice/modernisation-platform-github-oidc-provider
 ```
 
 Then run:

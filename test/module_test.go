@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestS3Creation(t *testing.T) {
+func TestGitHubOIDCProviderCreation(t *testing.T) {
 	t.Parallel()
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
@@ -18,7 +18,7 @@ func TestS3Creation(t *testing.T) {
 
 	terraform.InitAndApply(t, terraformOptions)
 
-	exampleName := terraform.Output(t, terraformOptions, "example_name")
+	github_actions_provider := terraform.Output(t, terraformOptions, "github_actions_provider")
 
-	assert.Regexp(t, regexp.MustCompile(`^example-name*`), exampleName)
+	assert.Regexp(t, regexp.MustCompile(`^arn:aws:iam::\d{12}:oidc-provider/token.actions.githubusercontent.com`), github_actions_provider)
 }
