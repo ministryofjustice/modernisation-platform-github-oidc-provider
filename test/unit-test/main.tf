@@ -1,10 +1,10 @@
 
 module "module_test" {
-  source = "../../"
+  source                 = "../../"
   github_repository      = "ministryofjustice/modernisation-platform-environments:*"
   additional_permissions = data.aws_iam_policy_document.extra_permissions.json
-  tags_common = local.tags
-  tags_prefix = terraform.workspace
+  tags_common            = local.tags
+  tags_prefix            = terraform.workspace
 }
 
 data "aws_iam_policy_document" "extra_permissions" {
