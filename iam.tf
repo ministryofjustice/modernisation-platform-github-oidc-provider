@@ -4,8 +4,6 @@ resource "aws_iam_role" "github_actions" {
   assume_role_policy = data.aws_iam_policy_document.github_oidc_assume_role.json
 }
 
-data "aws_caller_identity" "current" {}
-
 data "aws_iam_policy_document" "github_oidc_assume_role" {
   version = "2012-10-17"
 

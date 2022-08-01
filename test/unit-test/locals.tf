@@ -7,6 +7,24 @@ data "http" "environments_file" {
   url = "https://raw.githubusercontent.com/ministryofjustice/modernisation-platform/main/environments/${local.application_name}.json"
 }
 
+# Get secret by arn for environment management
+data "aws_ssm_parameter" "environment_management_arn" {
+  provider = aws.testing-ci-user
+  name     = "environment_management_arn"
+}
+
+data "aws_secretsmanager_secret" "environment_management" {
+  provider = aws.testing-ci-user
+  arn      = data.aws_ssm_parameter.environment_management_arn.value
+}
+
+# Get latest secret value with ID from above. This secret stores account IDs for the Modernisation Platform sub-accounts
+data "aws_secretsmanager_secret_version" "environment_management" {
+  provider  = aws.testing-ci-user
+  secret_id = data.aws_secretsmanager_secret.environment_management.id
+}
+
+
 locals {
 
   application_name = "testing"
@@ -27,12 +45,5 @@ locals {
     { "environment-name" = terraform.workspace },
     { "source-code" = "https://github.com/ministryofjustice/modernisation-platform" }
   )
-
-  environment = trimprefix(terraform.workspace, "${var.networking[0].application}-")
-  vpc_name    = var.networking[0].business-unit
-  subnet_set  = var.networking[0].set
-
-  is_live       = [substr(terraform.workspace, length(local.application_name), length(terraform.workspace)) == "-production" || substr(terraform.workspace, length(local.application_name), length(terraform.workspace)) == "-preproduction" ? "live" : "non-live"]
-  provider_name = "core-vpc-${local.environment}"
 
 }

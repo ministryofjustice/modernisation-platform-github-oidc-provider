@@ -1,12 +1,3 @@
-variable "app_name" {
-  type        = string
-  description = "Name of application"
-  validation {
-    condition     = can(regex("^[A-Za-z0-9][A-Za-z0-9-.]{1,61}[A-Za-z0-9]$", var.app_name))
-    error_message = "Invalid name for application supplied in variable app_name."
-  }
-}
-
 variable "github_repository" {
   type        = string
   description = "The github repository, for example ministryofjustice/modernisation-platform-environments:*"
