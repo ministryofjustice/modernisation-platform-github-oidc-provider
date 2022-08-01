@@ -20,5 +20,5 @@ func TestGitHubOIDCProviderCreation(t *testing.T) {
 
 	github_actions_provider := terraform.Output(t, terraformOptions, "github_actions_provider")
 
-	assert.Regexp(t, regexp.MustCompile(`^example-name*`), github_actions_provider)
+	assert.Regexp(t, regexp.MustCompile(`^arn:aws:iam::\d{12}:oidc-provider/token.actions.githubusercontent.com`), github_actions_provider)
 }
