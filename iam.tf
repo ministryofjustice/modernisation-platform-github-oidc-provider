@@ -1,7 +1,7 @@
 
 resource "aws_iam_role" "github_actions" {
   name               = "github-actions"
-  assume_role_policy = data.aws_iam_policy_document.github_oidc_assume_role.json
+  assume_role_policy = merge(data.aws_iam_policy_document.github_oidc_assume_role.json, additional_roles)
 }
 
 data "aws_iam_policy_document" "github_oidc_assume_role" {
@@ -12,8 +12,10 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
     actions = ["sts:AssumeRoleWithWebIdentity"]
 
     principals {
-      type        = "Federated"
-      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"]
+      type = "Federated"
+      identifiers = [
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"
+      ]
     }
 
     condition {
@@ -26,6 +28,16 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values   = ["repo:${var.github_repository}"]
+    }
+  }
+
+  statement {
+    sid     = "AllowOIDCToAssumeRoles"
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
+    principals {
+      type        = "AWS"
+      identifiers = [var.additional_roles]
     }
   }
 }
