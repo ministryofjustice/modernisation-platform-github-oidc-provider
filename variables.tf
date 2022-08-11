@@ -8,10 +8,6 @@ variable "additional_permissions" {
   description = "accept aws_iam_policy_document with additional permissions to attach to the github-actions role"
 }
 
-variable "additional_roles" {
-  description = "additional role ARNs to be assumed"
-}
-
 ## Tags / Prefix
 variable "tags_common" {
   description = "MOJ required tags"

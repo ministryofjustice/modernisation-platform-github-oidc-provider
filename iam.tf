@@ -1,7 +1,7 @@
 
 resource "aws_iam_role" "github_actions" {
   name               = "github-actions"
-  assume_role_policy = merge(data.aws_iam_policy_document.github_oidc_assume_role.json, additional_roles)
+  assume_role_policy = data.aws_iam_policy_document.github_oidc_assume_role.json
 }
 
 data "aws_iam_policy_document" "github_oidc_assume_role" {
@@ -28,16 +28,6 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values   = ["repo:${var.github_repository}"]
-    }
-  }
-
-  statement {
-    sid     = "AllowOIDCToAssumeRoles"
-    effect  = "Allow"
-    actions = ["sts:AssumeRole"]
-    principals {
-      type        = "AWS"
-      identifiers = [var.additional_roles]
     }
   }
 }
