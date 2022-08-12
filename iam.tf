@@ -12,8 +12,10 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
     actions = ["sts:AssumeRoleWithWebIdentity"]
 
     principals {
-      type        = "Federated"
-      identifiers = ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"]
+      type = "Federated"
+      identifiers = [
+        "arn:aws:iam::${data.aws_caller_identity.current.account_id}:oidc-provider/token.actions.githubusercontent.com"
+      ]
     }
 
     condition {
@@ -42,4 +44,9 @@ resource "aws_iam_policy" "extra_permissions" {
   description = "A policy for extra permissions for GitHub Actions"
 
   policy = var.additional_permissions
+}
+
+resource "aws_iam_role_policy_attachment" "extra_permissions" {
+  role       = aws_iam_role.github_actions.name
+  policy_arn = aws_iam_policy.extra_permissions.arn
 }
