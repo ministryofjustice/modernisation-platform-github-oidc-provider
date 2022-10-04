@@ -15,6 +15,7 @@ variable "tags_common" {
 }
 
 variable "tags_prefix" {
+  # tflint-ignore: terraform_unused_declarations
   description = "prefix for name tags"
   type        = string
 }
