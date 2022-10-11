@@ -54,25 +54,27 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                                                       | Type        |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| [aws_iam_openid_connect_provider.github_actions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider)  | resource    |
-| [aws_iam_policy.extra_permissions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy)                                 | resource    |
-| [aws_iam_role.github_actions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)                                        | resource    |
-| [aws_iam_role_policy_attachment.extra_permissions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource    |
-| [aws_iam_role_policy_attachment.read_only](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)         | resource    |
-| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity)                              | data source |
-| [aws_iam_policy_document.github_oidc_assume_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document)      | data source |
-| [tls_certificate.github](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/data-sources/certificate)                                       | data source |
+| Name                                                                                                                                                                 | Type        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| [aws_iam_openid_connect_provider.github_actions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider)            | resource    |
+| [aws_iam_policy.extra_permissions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_policy)                                           | resource    |
+| [aws_iam_role.github_actions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role)                                                  | resource    |
+| [aws_iam_role_policy_attachment.additional_managed_policies](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment) | resource    |
+| [aws_iam_role_policy_attachment.extra_permissions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)           | resource    |
+| [aws_iam_role_policy_attachment.read_only](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy_attachment)                   | resource    |
+| [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity)                                        | data source |
+| [aws_iam_policy_document.github_oidc_assume_role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy_document)                | data source |
+| [tls_certificate.github](https://registry.terraform.io/providers/hashicorp/tls/latest/docs/data-sources/certificate)                                                 | data source |
 
 ## Inputs
 
-| Name                                                                                                | Description                                                                                     | Type          | Default | Required |
-| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ------------- | ------- | :------: |
-| <a name="input_additional_permissions"></a> [additional_permissions](#input_additional_permissions) | accept aws_iam_policy_document with additional permissions to attach to the github-actions role | `string`      | n/a     |   yes    |
-| <a name="input_github_repository"></a> [github_repository](#input_github_repository)                | The github repository, for example ministryofjustice/modernisation-platform-environments:\*     | `string`      | n/a     |   yes    |
-| <a name="input_tags_common"></a> [tags_common](#input_tags_common)                                  | MOJ required tags                                                                               | `map(string)` | n/a     |   yes    |
-| <a name="input_tags_prefix"></a> [tags_prefix](#input_tags_prefix)                                  | prefix for name tags                                                                            | `string`      | n/a     |   yes    |
+| Name                                                                                                               | Description                                                                                     | Type           | Default | Required |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | -------------- | ------- | :------: |
+| <a name="input_additional_managed_policies"></a> [additional_managed_policies](#input_additional_managed_policies) | accept a list of arns for aws managed policies to attach to github-actions role                 | `list(string)` | `[]`    |    no    |
+| <a name="input_additional_permissions"></a> [additional_permissions](#input_additional_permissions)                | accept aws_iam_policy_document with additional permissions to attach to the github-actions role | `string`       | n/a     |   yes    |
+| <a name="input_github_repository"></a> [github_repository](#input_github_repository)                               | The github repository, for example ministryofjustice/modernisation-platform-environments:\*     | `string`       | n/a     |   yes    |
+| <a name="input_tags_common"></a> [tags_common](#input_tags_common)                                                 | MOJ required tags                                                                               | `map(string)`  | n/a     |   yes    |
+| <a name="input_tags_prefix"></a> [tags_prefix](#input_tags_prefix)                                                 | prefix for name tags                                                                            | `string`       | n/a     |   yes    |
 
 ## Outputs
 

@@ -37,6 +37,12 @@ resource "aws_iam_role_policy_attachment" "read_only" {
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
 }
 
+resource "aws_iam_role_policy_attachment" "additional_managed_policies" {
+  for_each   = toset(var.additional_managed_policies)
+  role       = aws_iam_role.github_actions.name
+  policy_arn = each.key
+}
+
 # Add actions missing from arn:aws:iam::aws:policy/ReadOnlyAccess
 resource "aws_iam_policy" "extra_permissions" {
   name        = "github-actions"
