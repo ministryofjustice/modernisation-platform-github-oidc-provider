@@ -14,6 +14,7 @@ variable "tags_common" {
   type        = map(string)
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "tags_prefix" {
   description = "prefix for name tags"
   type        = string
