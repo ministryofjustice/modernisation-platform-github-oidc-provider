@@ -82,4 +82,5 @@ No modules.
 |------|-------------|
 | <a name="output_github_actions_provider"></a> [github\_actions\_provider](#output\_github\_actions\_provider) | This module configures an OIDC provider for use with GitHub actions |
 | <a name="output_github_actions_role"></a> [github\_actions\_role](#output\_github\_actions\_role) | IAM Role created for use by the OIDC provider |
+| <a name="output_github_actions_role_trust_policy"></a> [github\_actions\_role\_trust\_policy](#output\_github\_actions\_role\_trust\_policy) | Assume role policy for the github-actions role |
 <!-- END_TF_DOCS -->
