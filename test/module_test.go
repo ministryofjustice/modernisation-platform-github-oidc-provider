@@ -1,10 +1,11 @@
 package main
 
 import (
-	"github.com/gruntwork-io/terratest/modules/terraform"
-	"github.com/stretchr/testify/assert"
 	"regexp"
 	"testing"
+
+	"github.com/gruntwork-io/terratest/modules/terraform"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestGitHubOIDCProviderCreation(t *testing.T) {
@@ -16,7 +17,10 @@ func TestGitHubOIDCProviderCreation(t *testing.T) {
 
 	defer terraform.Destroy(t, terraformOptions)
 
-	terraform.InitAndApply(t, terraformOptions)
+	terraform.Init(t, terraformOptions)
+	terraform.WorkspaceSelectOrNew(t, terraformOptions, "testing-test")
+
+	terraform.Apply(t, terraformOptions)
 
 	github_actions_provider := terraform.Output(t, terraformOptions, "github_actions_provider")
 

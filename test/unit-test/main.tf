@@ -1,7 +1,7 @@
 
 module "module_test" {
   source                 = "../../"
-  github_repository      = "ministryofjustice/modernisation-platform-environments:*"
+  github_repositories    = ["ministryofjustice/modernisation-platform-environments:*", "ministryofjustice/modernisation-platform-ami-builds:*"]
   additional_permissions = data.aws_iam_policy_document.extra_permissions.json
   tags_common            = local.tags
   tags_prefix            = terraform.workspace

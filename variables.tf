@@ -1,6 +1,11 @@
-variable "github_repository" {
-  type        = string
-  description = "The github repository, for example ministryofjustice/modernisation-platform-environments:*"
+variable "github_repositories" {
+  type        = list(string)
+  description = "The github repositories, for example [\"ministryofjustice/modernisation-platform-environments:*\"]"
+  validation {
+    condition     = length(var.github_repositories) > 0
+    error_message = "At least one repository must be specified."
+  }
+
 }
 
 variable "additional_permissions" {
