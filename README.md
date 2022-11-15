@@ -12,7 +12,7 @@ and the associated IAM resources required to make use of the connect provider.
 module "github-oidc-provider" {
 
   source                 = "https://github.com/ministryofjustice/modernisation-platform-terraform-github-oidc-provider"
-  github_repository      = "ministryofjustice/your-repository-name:*"
+  github_repositories    = ["ministryofjustice/your-repository-name:*"]
   additional_permissions = data.aws_iam_policy_document.extra_permissions.json
   tags_common            = local.tags
   tags_prefix            = terraform.workspace
@@ -40,13 +40,14 @@ If you're looking to raise an issue with this module, please create a new issue 
 | ------------------------------------------------------------------------ | -------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement_terraform) | >= 1.0.1 |
 | <a name="requirement_aws"></a> [aws](#requirement_aws)                   | ~> 4.0   |
+| <a name="requirement_tls"></a> [tls](#requirement_tls)                   | ~> 4.0   |
 
 ## Providers
 
 | Name                                             | Version |
 | ------------------------------------------------ | ------- |
 | <a name="provider_aws"></a> [aws](#provider_aws) | ~> 4.0  |
-| <a name="provider_tls"></a> [tls](#provider_tls) | n/a     |
+| <a name="provider_tls"></a> [tls](#provider_tls) | ~> 4.0  |
 
 ## Modules
 
@@ -68,19 +69,20 @@ No modules.
 
 ## Inputs
 
-| Name                                                                                                               | Description                                                                                     | Type           | Default | Required |
-| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- | -------------- | ------- | :------: |
-| <a name="input_additional_managed_policies"></a> [additional_managed_policies](#input_additional_managed_policies) | accept a list of arns for aws managed policies to attach to github-actions role                 | `list(string)` | `[]`    |    no    |
-| <a name="input_additional_permissions"></a> [additional_permissions](#input_additional_permissions)                | accept aws_iam_policy_document with additional permissions to attach to the github-actions role | `string`       | n/a     |   yes    |
-| <a name="input_github_repository"></a> [github_repository](#input_github_repository)                               | The github repository, for example ministryofjustice/modernisation-platform-environments:\*     | `string`       | n/a     |   yes    |
-| <a name="input_tags_common"></a> [tags_common](#input_tags_common)                                                 | MOJ required tags                                                                               | `map(string)`  | n/a     |   yes    |
-| <a name="input_tags_prefix"></a> [tags_prefix](#input_tags_prefix)                                                 | prefix for name tags                                                                            | `string`       | n/a     |   yes    |
+| Name                                                                                                               | Description                                                                                      | Type           | Default | Required |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | -------------- | ------- | :------: |
+| <a name="input_additional_managed_policies"></a> [additional_managed_policies](#input_additional_managed_policies) | accept a list of arns for aws managed policies to attach to github-actions role                  | `list(string)` | `[]`    |    no    |
+| <a name="input_additional_permissions"></a> [additional_permissions](#input_additional_permissions)                | accept aws_iam_policy_document with additional permissions to attach to the github-actions role  | `string`       | n/a     |   yes    |
+| <a name="input_github_repositories"></a> [github_repositories](#input_github_repositories)                         | The github repositories, for example ["ministryofjustice/modernisation-platform-environments:*"] | `list(string)` | n/a     |   yes    |
+| <a name="input_tags_common"></a> [tags_common](#input_tags_common)                                                 | MOJ required tags                                                                                | `map(string)`  | n/a     |   yes    |
+| <a name="input_tags_prefix"></a> [tags_prefix](#input_tags_prefix)                                                 | prefix for name tags                                                                             | `string`       | n/a     |   yes    |
 
 ## Outputs
 
-| Name                                                                                                     | Description                                                         |
-| -------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| <a name="output_github_actions_provider"></a> [github_actions_provider](#output_github_actions_provider) | This module configures an OIDC provider for use with GitHub actions |
-| <a name="output_github_actions_role"></a> [github_actions_role](#output_github_actions_role)             | IAM Role created for use by the OIDC provider                       |
+| Name                                                                                                                                | Description                                                         |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| <a name="output_github_actions_provider"></a> [github_actions_provider](#output_github_actions_provider)                            | This module configures an OIDC provider for use with GitHub actions |
+| <a name="output_github_actions_role"></a> [github_actions_role](#output_github_actions_role)                                        | IAM Role created for use by the OIDC provider                       |
+| <a name="output_github_actions_role_trust_policy"></a> [github_actions_role_trust_policy](#output_github_actions_role_trust_policy) | Assume role policy for the github-actions role                      |
 
 <!-- END_TF_DOCS -->

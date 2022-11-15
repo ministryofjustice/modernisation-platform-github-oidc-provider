@@ -7,3 +7,8 @@ output "github_actions_role" {
   description = "IAM Role created for use by the OIDC provider"
   value       = aws_iam_role.github_actions.arn
 }
+
+output "github_actions_role_trust_policy" {
+  description = "Assume role policy for the github-actions role"
+  value       = data.aws_iam_policy_document.github_oidc_assume_role.json
+}
