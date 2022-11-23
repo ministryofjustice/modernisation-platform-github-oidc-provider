@@ -18,10 +18,7 @@ func TestGitHubOIDCProviderCreation(t *testing.T) {
 
 	defer terraform.Destroy(t, terraformOptions)
 
-	terraform.Init(t, terraformOptions)
-	terraform.WorkspaceSelectOrNew(t, terraformOptions, "testing-test")
-
-	terraform.Apply(t, terraformOptions)
+	terraform.InitAndApply(t, terraformOptions)
 
 	github_actions_provider := terraform.Output(t, terraformOptions, "github_actions_provider")
 	github_actions_role_trust_policy_conditions := terraform.Output(t, terraformOptions, "github_actions_trust_policy_conditions")

@@ -16,17 +16,9 @@ go mod tidy
 
 # How to run the tests locally
 
-Initialise terraform workspace within the `test/unit-test` directory
-
-```
-cd test/unit-test
-aws-vault exec mod -- terraform init
-aws-vault exec mod -- terraform workspace select testing-test
-```
-
 Run the tests from within the `test` directory using the `testing-ci` user credentials.
 
-Get the crededtials from secrets manager using the helper script in the modernisation-platform main repo.
+Get the credentials from secrets manager using the helper script in the modernisation-platform main repo.
 
 ```
 cd modernisation-platform/scripts/internal/
