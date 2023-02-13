@@ -70,9 +70,10 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_additional_managed_policies"></a> [additional\_managed\_policies](#input\_additional\_managed\_policies) | accept a list of arns for aws managed policies to attach to github-actions role | `list(string)` | `[]` | no |
-| <a name="input_additional_permissions"></a> [additional\_permissions](#input\_additional\_permissions) | accept aws\_iam\_policy\_document with additional permissions to attach to the github-actions role | `string` | n/a | yes |
+| <a name="input_additional_managed_policies"></a> [additional\_managed\_policies](#input\_additional\_managed\_policies) | accept a list of arns for aws managed policies to attach to OIDC-provider role | `list(string)` | `[]` | no |
+| <a name="input_additional_permissions"></a> [additional\_permissions](#input\_additional\_permissions) | accept aws\_iam\_policy\_document with additional permissions to attach to the OIDC-provider role | `string` | n/a | yes |
 | <a name="input_github_repositories"></a> [github\_repositories](#input\_github\_repositories) | The github repositories, for example ["ministryofjustice/modernisation-platform-environments:*"] | `list(string)` | n/a | yes |
+| <a name="input_role_name"></a> [role\_name](#input\_role\_name) | OIDC Role Name | `string` | `"github-actions"` | no |
 | <a name="input_tags_common"></a> [tags\_common](#input\_tags\_common) | MOJ required tags | `map(string)` | n/a | yes |
 | <a name="input_tags_prefix"></a> [tags\_prefix](#input\_tags\_prefix) | prefix for name tags | `string` | n/a | yes |
 

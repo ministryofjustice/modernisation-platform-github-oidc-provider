@@ -10,13 +10,20 @@ variable "github_repositories" {
 
 variable "additional_permissions" {
   type        = string
-  description = "accept aws_iam_policy_document with additional permissions to attach to the github-actions role"
+  description = "accept aws_iam_policy_document with additional permissions to attach to the OIDC-provider role"
 }
 
 variable "additional_managed_policies" {
   type        = list(string)
-  description = "accept a list of arns for aws managed policies to attach to github-actions role"
+  description = "accept a list of arns for aws managed policies to attach to OIDC-provider role"
   default     = []
+}
+
+## OIDC Role Name
+variable "role_name" {
+  type        = string
+  description = "OIDC Role Name"
+  default     = "github-actions"
 }
 
 ## Tags / Prefix
