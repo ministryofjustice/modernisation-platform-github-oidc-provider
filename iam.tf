@@ -1,6 +1,6 @@
 
 resource "aws_iam_role" "github_actions" {
-  name               = "github-actions"
+  name               = var.role_name
   assume_role_policy = data.aws_iam_policy_document.github_oidc_assume_role.json
 }
 
@@ -45,7 +45,7 @@ resource "aws_iam_role_policy_attachment" "additional_managed_policies" {
 
 # Add actions missing from arn:aws:iam::aws:policy/ReadOnlyAccess
 resource "aws_iam_policy" "extra_permissions" {
-  name        = "github-actions"
+  name        = var.role_name
   path        = "/"
   description = "A policy for extra permissions for GitHub Actions"
 

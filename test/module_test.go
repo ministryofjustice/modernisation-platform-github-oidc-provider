@@ -22,7 +22,12 @@ func TestGitHubOIDCProviderCreation(t *testing.T) {
 
 	github_actions_provider := terraform.Output(t, terraformOptions, "github_actions_provider")
 	github_actions_role_trust_policy_conditions := terraform.Output(t, terraformOptions, "github_actions_trust_policy_conditions")
+	oidc_role_arn := terraform.Output(t, terraformOptions, "oidc_role")
 
 	assert.Regexp(t, regexp.MustCompile(`^arn:aws:iam::\d{12}:oidc-provider/token.actions.githubusercontent.com`), github_actions_provider)
 	require.Equal(t, github_actions_role_trust_policy_conditions, "[map[token.actions.githubusercontent.com:sub:[repo:ministryofjustice/modernisation-platform-environments:* repo:ministryofjustice/modernisation-platform-ami-builds:*]]]")
+
+	// Testing backwards compatibility
+
+	assert.Regexp(t, regexp.MustCompile(`^arn:aws:iam::\d{12}:role/github-actions`), oidc_role_arn)
 }
