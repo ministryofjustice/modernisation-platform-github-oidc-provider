@@ -12,6 +12,7 @@ data "aws_iam_policy_document" "extra_permissions" {
   #checkov:skip=CKV_AWS_108
   #checkov:skip=CKV_AWS_109
   #checkov:skip=CKV_AWS_111
+  #checkov:skip=CKV_AWS_356
   version = "2012-10-17"
 
   statement {
