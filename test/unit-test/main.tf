@@ -1,8 +1,12 @@
+resource "random_id" "role" {
+  byte_length = 1
+}
 
 module "module_test" {
   source                 = "../../"
-  github_repositories    = ["ministryofjustice/modernisation-platform-environments:*", "ministryofjustice/modernisation-platform-ami-builds:*"]
   additional_permissions = data.aws_iam_policy_document.extra_permissions.json
+  github_repositories    = ["ministryofjustice/modernisation-platform-environments:*", "ministryofjustice/modernisation-platform-ami-builds:*"]
+  role_name              = format("github-actions-%s", random_id.role.dec)
   tags_common            = local.tags
   tags_prefix            = terraform.workspace
 }
