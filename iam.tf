@@ -5,6 +5,7 @@ resource "aws_iam_role" "github_actions" {
 }
 
 data "aws_iam_policy_document" "github_oidc_assume_role" {
+  #checkov:skip=CKV_AWS_358 "Skipping as this is controlled by variable validation"
   version = "2012-10-17"
 
   statement {
