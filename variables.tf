@@ -15,10 +15,10 @@ variable "github_repositories" {
     error_message = "At least one repository must be specified."
   }
   validation {
-    condition     = alltrue([
-    for repo in var.github_repositories :
-    can(regex("ministryofjustice", repo))
-  ])
+    condition = alltrue([
+      for repo in var.github_repositories :
+      can(regex("ministryofjustice", repo))
+    ])
     error_message = "Repository must belong to the \"ministryofjustice\" GitHub organisation"
   }
 }
