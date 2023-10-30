@@ -29,11 +29,6 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       variable = "token.actions.githubusercontent.com:sub"
       values   = formatlist("repo:%s", var.github_repositories)
     }
-    condition {
-      test     = "StringLike"
-      variable = "token.actions.githubusercontent.com:sub"
-      values   = ["repo:ministryofjustice/*"]
-    }
   }
 }
 
