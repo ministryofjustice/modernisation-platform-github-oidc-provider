@@ -1,6 +1,6 @@
 module github.com/ministryofjustice/modernisation-platform-github-oidc-provider
 
-go 1.18
+go 1.23
 
 require (
 	github.com/gruntwork-io/terratest v0.47.2
