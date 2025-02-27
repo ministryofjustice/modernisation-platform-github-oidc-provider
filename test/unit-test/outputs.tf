@@ -3,7 +3,10 @@ output "github_actions_provider" {
 }
 
 output "github_actions_trust_policy_conditions" {
-  value = [for s in jsondecode(module.module_test.github_actions_role_trust_policy).Statement : try(s.Condition.StringLike, null)]
+  value = [
+    for statement in jsondecode(module.module_test.github_actions_role_trust_policy).Statement :
+    try(statement.Condition.StringLike, "null")
+  ]
 }
 
 output "oidc_role" {
