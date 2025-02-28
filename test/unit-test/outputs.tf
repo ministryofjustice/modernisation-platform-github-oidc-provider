@@ -13,3 +13,6 @@ output "github_actions_trust_policy_conditions" {
 output "oidc_role" {
   value = module.module_test.github_actions_role
 }
+output "debug_statements" {
+  value = jsondecode(module.module_test.github_actions_role_trust_policy).Statement
+}
