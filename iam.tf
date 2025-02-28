@@ -40,12 +40,6 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       type        = "Service"
       identifiers = ["malware-protection-plan.guardduty.amazonaws.com"]
     }
-
-    condition {
-      test     = "StringEquals"
-      variable = "aws:SourceAccount"
-      values   = [data.aws_caller_identity.current.account_id]
-    }
   }
 }
 resource "aws_iam_role_policy_attachment" "read_only" {
