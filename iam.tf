@@ -49,7 +49,7 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
     condition {
       test     = "ArnLike"
       variable = "aws:SourceArn"
-      values   = ["arn:aws:guardduty:eu-west-2:374269020027:malware-protection-plan/*"]
+      values   = ["arn:aws:guardduty:eu-west-2:${data.aws_caller_identity.current.account_id}:malware-protection-plan/*"]
     }
   }
 }
