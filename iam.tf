@@ -31,8 +31,28 @@ data "aws_iam_policy_document" "github_oidc_assume_role" {
       values   = formatlist("repo:%s", var.github_repositories)
     }
   }
-}
+  statement {
+    sid     = "GuardDutyMalwareProtectionForS3"
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
 
+    principals {
+      type        = "Service"
+      identifiers = ["malware-protection-plan.guardduty.amazonaws.com"]
+    }
+
+    condition {
+      test     = "StringEquals"
+      variable = "aws:SourceAccount"
+      values   = [data.aws_caller_identity.current.account_id]
+    }
+    condition {
+      test     = "ArnLike"
+      variable = "aws:SourceArn"
+      values   = ["arn:aws:guardduty:eu-west-2:${data.aws_caller_identity.current.account_id}:malware-protection-plan/*"]
+    }
+  }
+}
 resource "aws_iam_role_policy_attachment" "read_only" {
   role       = aws_iam_role.github_actions.name
   policy_arn = "arn:aws:iam::aws:policy/ReadOnlyAccess"
