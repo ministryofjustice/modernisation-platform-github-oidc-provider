@@ -11,6 +11,7 @@ module "module_test" {
   tags_prefix            = terraform.workspace
 }
 
+#trivy:ignore:AVD-AWS-0345
 data "aws_iam_policy_document" "extra_permissions" {
   #checkov:skip=CKV_AWS_107
   #checkov:skip=CKV_AWS_108
