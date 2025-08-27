@@ -52,3 +52,8 @@ variable "tags_prefix" {
   description = "prefix for name tags"
   type        = string
 }
+
+variable "create_github_oidc_provider" {
+  type    = bool
+  default = true
+}
