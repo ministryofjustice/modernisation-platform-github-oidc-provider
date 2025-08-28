@@ -2,7 +2,7 @@ resource "random_id" "role" {
   byte_length = 1
 }
 
-resource "random_id_without_provider" "role" {
+resource "random_id" "role_without_provider" {
   byte_length = 1
 }
 
@@ -44,7 +44,7 @@ module "module_test_without_provider" {
   source                      = "../../"
   additional_permissions      = data.aws_iam_policy_document.extra_permissions.json
   github_repositories         = ["ministryofjustice/modernisation-platform-environments:*", "ministryofjustice/modernisation-platform-ami-builds:*"]
-  role_name                   = format("github-actions-%s", random_id_without_provider.role.dec)
+  role_name                   = format("github-actions-%s", random_id.role_without_provider.dec)
   tags_common                 = local.tags
   tags_prefix                 = terraform.workspace
   create_github_oidc_provider = false
