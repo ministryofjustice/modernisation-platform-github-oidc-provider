@@ -47,7 +47,7 @@ module "module_test_without_provider" {
 }
 
 #trivy:ignore:AVD-AWS-0345
-data "aws_iam_policy_document" "extra_permissions" {
+data "aws_iam_policy_document" "extra_permissions_without_provider" {
   #checkov:skip=CKV_AWS_107
   #checkov:skip=CKV_AWS_108
   #checkov:skip=CKV_AWS_109
