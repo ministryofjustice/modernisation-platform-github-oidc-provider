@@ -1,6 +1,6 @@
 output "github_actions_provider" {
   description = "This module configures an OIDC provider for use with GitHub actions"
-  value       = try(aws_iam_openid_connect_provider.github_actions[0].id, null)
+  value       = try(aws_iam_openid_connect_provider.github_actions[0].id, data.aws_iam_openid_connect_provider.github_actions[0].id, null)
 }
 
 output "github_actions_role" {
