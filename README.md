@@ -1,5 +1,5 @@
-# Modernisation Platform Github OIDC Provider Module
-[![Standards Icon]][Standards Link] [![Format Code Icon]][Format Code Link] [![Scorecards Icon]][Scorecards Link][![SCA Icon]][SCA Link] [![Terraform SCA Icon]][Terraform SCA Link]
+# Modernisation Platform GitHub OIDC Provider Module
+[![Standards Icon]][Standards Link] [![Scorecards Icon]][Scorecards Link] [![Code Quality Icon]][Code Quality Link]
 
 This module allows users to create an [OIDC Provider](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_openid_connect_provider)
 and the associated IAM resources required to make use of the connect provider.
@@ -90,11 +90,7 @@ No modules.
 
 [Standards Link]: https://github-community.service.justice.gov.uk/repository-standards/modernisation-platform-github-oidc-provider "Repo standards badge."
 [Standards Icon]: https://github-community.service.justice.gov.uk/repository-standards/api/modernisation-platform-github-oidc-provider/badge
-[Format Code Icon]: https://img.shields.io/github/actions/workflow/status/ministryofjustice/modernisation-platform-github-oidc-provider/format-code.yml?labelColor=231f20&style=for-the-badge&label=Formate%20Code
-[Format Code Link]: https://github.com/ministryofjustice/modernisation-platform-github-oidc-provider/actions/workflows/format-code.yml
 [Scorecards Icon]: https://img.shields.io/github/actions/workflow/status/ministryofjustice/modernisation-platform-github-oidc-provider/scorecards.yml?branch=main&labelColor=231f20&style=for-the-badge&label=Scorecards
 [Scorecards Link]: https://github.com/ministryofjustice/modernisation-platform-github-oidc-provider/actions/workflows/scorecards.yml
-[SCA Icon]: https://img.shields.io/github/actions/workflow/status/ministryofjustice/modernisation-platform-github-oidc-provider/code-scanning.yml?branch=main&labelColor=231f20&style=for-the-badge&label=Secure%20Code%20Analysis
-[SCA Link]: https://github.com/ministryofjustice/modernisation-platform-github-oidc-provider/actions/workflows/code-scanning.yml
-[Terraform SCA Icon]: https://img.shields.io/github/actions/workflow/status/ministryofjustice/modernisation-platform-github-oidc-provider/code-scanning.yml?branch=main&labelColor=231f20&style=for-the-badge&label=Terraform%20Static%20Code%20Analysis
-[Terraform SCA Link]: https://github.com/ministryofjustice/modernisation-platform-github-oidc-provider/actions/workflows/terraform-static-analysis.yml
+[Code Quality Icon]: https://img.shields.io/github/actions/workflow/status/ministryofjustice/modernisation-platform-github-oidc-provider/code-quality.yml?branch=main&labelColor=231f20&style=for-the-badge&label=Code%20Quality
+[Code Quality Link]: https://github.com/ministryofjustice/modernisation-platform-github-oidc-provider/actions/workflows/code-quality.yml
